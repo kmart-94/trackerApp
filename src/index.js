@@ -1,9 +1,11 @@
 require('./models/User');
+require('./models/Track');
 
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
+const trackRoutes = require('./routes/trackRoutes');
 const requireAuth = require('./middlewares/requireAuth');
 
 const app = express();
@@ -12,6 +14,7 @@ const app = express();
 //all json info is parsed first and then run request handler
 app.use(bodyParser.json());
 app.use(authRoutes);
+app.use(trackRoutes);
 
 const mongoUri = "mongodb+srv://admin:myp@ssword12@clustertracker.nry3n.mongodb.net/<dbname>?retryWrites=true&w=majority";
 //connects to mongoose using your uri and an options object with settings for avoiding errors later.
